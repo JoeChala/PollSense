@@ -92,21 +92,12 @@ pollsense/
 ├── manage.py
 ├── config/
 ├── surveys/
-├── questions/
-├── responses/
-├── analytics/
-├── exports/
-├── limits/
-├── accounts/
-├── common/
 ├── templates/
 ├── static/
 └── fastapi_service/
 ```
 
 ---
-
-
 
 ## Security & Abuse Protection
 
