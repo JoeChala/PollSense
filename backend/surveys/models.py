@@ -1,14 +1,18 @@
 from django.db import models
 from django.conf import settings
+import uuid
+
 
 class Survey(models.Model):
-
+    # contains the available statuses for the survey
     class SurveyStatus(models.TextChoices):
         DRAFT = "DRAFT", "Draft"
         PUBLISHED = "PUBLISHED", "Published"
         CLOSED = "CLOSED", "Closed"
         ARCHIVED = "ARCHIVED", "Archived"
     
+    survey_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+
     # default user model
     owner = models.ForeignKey(
         settings.AUTH_USER_MODEL,
@@ -17,13 +21,12 @@ class Survey(models.Model):
 
     title = models.CharField(
         blank=False,
-        null=False,
         max_length=255
     )
 
     description = models.TextField(blank=True)
 
-    staus = models.CharField(
+    status = models.CharField(
         max_length=20,
         blank=False,
         choices=SurveyStatus.choices,
@@ -31,6 +34,7 @@ class Survey(models.Model):
     )
 
     created_at = models.DateTimeField(auto_now_add=True)
+
 
 class Question(models.Model):
     # more types have to be added
@@ -49,6 +53,8 @@ class Question(models.Model):
         choices=QuestionTypes.choices,
         default=QuestionTypes.TEXT
     )
+    # stores the order of the current question in the survey
+    order = models.IntegerField(default=1)
 
 class Choice(models.Model):
     question = models.ForeignKey(Question, related_name="choices",on_delete=models.CASCADE)
@@ -56,7 +62,8 @@ class Choice(models.Model):
 
 class Response(models.Model):
     survey = models.ForeignKey(Survey,on_delete=models.CASCADE,related_name="responses")
-    submitted_at = models.DateTimeField(auto_now_add=True,blank=False)
+    submitted_at = models.DateTimeField(auto_now_add=True)
+    session_key = models.CharField(max_length=40)
 
 class Answer(models.Model):
     response = models.ForeignKey(Response, on_delete=models.CASCADE, related_name="answers")
