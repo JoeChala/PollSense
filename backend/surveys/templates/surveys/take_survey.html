@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Take a survey</title>
+</head>
+<body>
+    {% for question in questions %}
+        <p>{{ question.question_text }}</p>
+        {% for choice in question.choices.all %}
+            <p>{{ choice.text }}</p>
+        {% endfor %}
+    {% endfor %}
+</body>
+</html>

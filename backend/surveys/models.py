@@ -56,8 +56,8 @@ class Question(models.Model):
     # stores the order of the current question in the survey
     order = models.IntegerField(default=1)
 
-class Choice(models.Model):
-    question = models.ForeignKey(Question, related_name="choices",on_delete=models.CASCADE)
+class MCQChoice(models.Model):
+    question = models.ForeignKey(Question, related_name="mcq_choices",on_delete=models.CASCADE)
     text = models.CharField(max_length=255,blank=False)
 
 class Response(models.Model):
@@ -65,11 +65,11 @@ class Response(models.Model):
     submitted_at = models.DateTimeField(auto_now_add=True)
     session_key = models.CharField(max_length=40)
 
-class Answer(models.Model):
+class MCQAnswer(models.Model):
     response = models.ForeignKey(Response, on_delete=models.CASCADE, related_name="answers")
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
 
     text_answer = models.TextField(null=True, blank=True)
-    selected_choice = models.ForeignKey(Choice, null=True, blank=True, on_delete=models.SET_NULL)
+    selected_choice = models.ForeignKey(MCQChoice, null=True, blank=True, on_delete=models.SET_NULL)
     rating_value = models.IntegerField(null=True, blank=True)
 
