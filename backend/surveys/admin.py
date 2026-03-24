@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import Survey, Question, MCQChoice
+from .models import Survey, Question, Choice
 
 admin.site.register(Survey)
 admin.site.register(Question)
-admin.site.register(MCQChoice)
+admin.site.register(Choice)
