@@ -1,0 +1,11 @@
+Django>6.0
+djangorestframework
+python-dotenv
+
+django-allauth
+django-cors-headers
+
+django-extensions
+
+pytest
+pytest-django
