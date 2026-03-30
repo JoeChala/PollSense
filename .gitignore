@@ -9,6 +9,7 @@ build/
 .vscode/
 
 .venv/
+venv/
 *.env
 db.sqlite3
 *.log
