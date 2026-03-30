@@ -91,12 +91,14 @@ class Choice(models.Model):
     class Meta:
         unique_together = ('question','order')
 
+
 class Response(models.Model):
     survey = models.ForeignKey(Survey,on_delete=models.CASCADE,related_name="responses",db_index=True)
 
     submitted_at = models.DateTimeField(auto_now_add=True,db_index=True)
 
     metadata = models.JSONField(null=True, blank=True)
+
 
 class Answer(models.Model):
     response = models.ForeignKey(Response, on_delete=models.CASCADE, related_name="answers")
