@@ -96,7 +96,7 @@ class Choice(models.Model):
 
 class Response(models.Model):
     survey = models.ForeignKey(Survey,on_delete=models.CASCADE,related_name="responses",db_index=True)
-
+    session_key = models.CharField(max_length=100,null=True,blank=True)
     submitted_at = models.DateTimeField(auto_now_add=True,db_index=True)
 
     metadata = models.JSONField(null=True, blank=True)
