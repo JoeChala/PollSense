@@ -79,6 +79,7 @@ class Question(models.Model):
 
     class Meta:
         unique_together = ('survey', 'order')
+        ordering = ['order'] 
 
 
 class Choice(models.Model):
@@ -90,6 +91,7 @@ class Choice(models.Model):
 
     class Meta:
         unique_together = ('question','order')
+        ordering = ['order'] 
 
 
 class Response(models.Model):
