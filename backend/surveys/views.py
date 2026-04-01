@@ -14,7 +14,7 @@ def user_signin(request):
 
 
 def survey_list(request):
-    surveys = Survey.objects.filter(owner=request.user)
+    surveys = Survey.objects.all()
     context = {
         'surveys': surveys
     }
@@ -29,13 +29,13 @@ def take_survey(request,survey_id):
         raise Http404(f"This survey is not published\nCurrent status: {survey.status}")
     
     questions = Question.objects.filter(survey=survey).prefetch_related('choices').order_by('order')
-
     if request.method == "POST":
-        form = SurveyForm(request.POST,questions)
+        form = SurveyForm(request.POST,questions=questions)
 
         if form.is_valid():
             data = form.cleaned_data
-            return render(request, 'surveys/take_survey.html', {'form': form, 'data': data})
+            print(data)
+            return render(request, 'surveys/take_survey.html', {'data': data})
 
     else:
         form = SurveyForm(questions=questions)

@@ -7,7 +7,8 @@ from .models import Question
 
 class SurveyForm(forms.Form):
     def __init__(self, *args, **kwargs):
-        questions = kwargs.pop('questions')
+        questions = kwargs.pop('questions',[])
+        
         super().__init__(*args, **kwargs)
 
         for q in questions:
