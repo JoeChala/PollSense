@@ -20,7 +20,8 @@ class Survey(models.Model):
         primary_key=True,
         default=uuid.uuid4, 
         editable=False, 
-        unique=True)
+        unique=True
+    )
 
     # default user model
     owner = models.ForeignKey(

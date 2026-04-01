@@ -26,7 +26,7 @@ class SurveyForm(forms.Form):
 
             # MCQ
             elif q.question_type == Question.QuestionTypes.MCQ:
-                choices = [(c.id, c.text) for c in q.choices.all()]
+                choices = [(c.text, c.text) for c in q.choices.all()]
 
                 self.fields[field_name] = forms.ChoiceField(
                     label=label,

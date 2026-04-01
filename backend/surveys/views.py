@@ -29,12 +29,12 @@ def take_survey(request,survey_id):
         raise Http404(f"This survey is not published\nCurrent status: {survey.status}")
     
     questions = Question.objects.filter(survey=survey).prefetch_related('choices').order_by('order')
+
     if request.method == "POST":
         form = SurveyForm(request.POST,questions=questions)
 
         if form.is_valid():
             data = form.cleaned_data
-            print(data)
             return render(request, 'surveys/take_survey.html', {'data': data})
 
     else:

@@ -6,10 +6,15 @@
     <title>Sign In</title>
 </head>
 <body>
-    <form>
-        <input type="text" id="username" placeholder="Enter your name"><br>
-        <input type="password" id="user-password" placeholder="Enter your paassword"><br>
-        <input type="submit" id="submit-button" value="Sign in">
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Username">
+        <input type="password" name="password" placeholder="Password">
+        <button type="submit">Login</button>
     </form>
+
+    {% if error %}
+    <p>{{ error }}</p>
+    {% endif %}
 </body>
 </html>
