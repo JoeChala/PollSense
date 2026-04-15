@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import "../css/HomePage.css";
 
-function HomePage() {
+
+function NavBar() {
   const navigate = useNavigate();
 
   return (
@@ -11,4 +11,4 @@ function HomePage() {
   )
 }
 
-export default HomePage;
+export default NavBar;
