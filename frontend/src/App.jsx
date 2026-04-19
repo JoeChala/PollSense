@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-import HomePage from "./pages/HomePages"
+import "./App.css";
+import HomePage from "./pages/HomePages";
 
 function App() {
   return (
@@ -8,7 +8,6 @@ function App() {
       <Routes>
         {/* Home Page */}
         <Route path="/" element={<HomePage />} />
-
       </Routes>
     </BrowserRouter>
   );

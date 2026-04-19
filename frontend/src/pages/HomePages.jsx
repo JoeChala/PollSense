@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import "../css/HomePage.css";
-import NavBar from "../components/HomePage/Navbar"
+import NavBar from "../components/HomePage/Navbar";
 
 function HomePage() {
   const navigate = useNavigate();
@@ -9,7 +9,7 @@ function HomePage() {
     <>
       <NavBar />
     </>
-  )
+  );
 }
 
 export default HomePage;
